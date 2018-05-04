@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="blog.globalquality.dartsscorekeeper.MainActivity">
+
+    <TableLayout
+        android:id="@+id/tableCricketScorer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="0,1,3,4">
+
+        <!-- column titles -->
+        <TableRow
+            android:id="@+id/tableRowTitles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/home"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textCricket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/cricket"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/textAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/away"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+        </TableRow>
+        <!-- leg score -->
+        <TableRow
+            android:id="@+id/tableRowScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/textHomeScore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/titleScore"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editHomeScore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/largeText"
+                android:text="@string/score" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:textSize="@dimen/largeText"/>
+
+            <EditText
+                android:id="@+id/editAwayScore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/largeText"
+                android:text="@string/score" />
+
+            <TextView
+                android:id="@+id/textAwayScore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/padding"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/titleScore"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+        <!-- First Throw -->
+        <TableRow
+            android:id="@+id/tableThrow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/score"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="000"
+                android:textSize="@dimen/largeText"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/twenty"
+                android:textSize="@dimen/largeText"/>
+
+            <TextView
+                android:id="@+id/textAwayThrow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="000"
+                android:textSize="@dimen/largeText"/>
+
+            <EditText
+                android:id="@+id/editAwayThrow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/score"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+
+    </TableLayout>
+</ScrollView>
