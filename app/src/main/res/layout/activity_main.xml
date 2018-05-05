@@ -9,9 +9,80 @@
         android:id="@+id/tableCricketScorer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="0,1,3,4">
+        android:stretchColumns="0,1,2,3,4,5,6">
+
+        <!-- dart points -->
+        <TableRow
+            android:id="@+id/tableDartPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/padding">
+
+            <EditText
+                android:id="@+id/editHomeDart1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editHomeDart2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="T20"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editHomeDart3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="T20"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text=""
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayDart1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="T20"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayDart2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="T20"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayDart3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="20"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
 
         <!-- column titles -->
+
         <TableRow
             android:id="@+id/tableRowTitles"
             android:layout_width="match_parent"
@@ -23,9 +94,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_span="3"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/home"
                 android:textAllCaps="true"
+                android:textColor="@color/red"
                 android:textSize="@dimen/largeText" />
 
             <TextView
@@ -33,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/cricket"
                 android:textAllCaps="true" />
@@ -42,9 +116,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_span="3"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/away"
                 android:textAllCaps="true"
+                android:textColor="@color/green"
                 android:textSize="@dimen/largeText" />
 
         </TableRow>
@@ -60,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_span="2"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/titleScore"
                 android:textAllCaps="true"
@@ -70,29 +147,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/largeText"
-                android:text="@string/score" />
+                android:hint="@string/score"
+                android:textSize="@dimen/largeText" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="@dimen/padding"
-                android:textSize="@dimen/largeText"/>
+                android:textSize="@dimen/largeText" />
 
             <EditText
                 android:id="@+id/editAwayScore"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/largeText"
-                android:text="@string/score" />
+                android:hint="@string/score"
+                android:textSize="@dimen/largeText" />
 
             <TextView
                 android:id="@+id/textAwayScore"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingTop="@dimen/padding"
                 android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:paddingTop="@dimen/padding"
                 android:text="@string/titleScore"
                 android:textAllCaps="true"
                 android:textSize="@dimen/largeText" />
@@ -109,7 +188,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/score"
+                android:layout_span="2"
+                android:hint="180"
                 android:textSize="@dimen/largeText" />
 
             <TextView
@@ -118,8 +198,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="@dimen/padding"
-                android:text="000"
-                android:textSize="@dimen/largeText"/>
+                android:text="321"
+                android:textSize="@dimen/largeText" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -127,7 +207,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="@dimen/padding"
                 android:text="@string/twenty"
-                android:textSize="@dimen/largeText"/>
+                android:textSize="@dimen/largeText" />
 
             <TextView
                 android:id="@+id/textAwayThrow1"
@@ -135,17 +215,342 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="@dimen/padding"
-                android:text="000"
-                android:textSize="@dimen/largeText"/>
+                android:text="361"
+                android:textSize="@dimen/largeText" />
 
             <EditText
                 android:id="@+id/editAwayThrow1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/score"
+                android:layout_span="2"
+                android:hint="140"
                 android:textSize="@dimen/largeText" />
         </TableRow>
 
+        <!-- Second Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="100"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="221"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/nineteen"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="261"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="100"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+        <!-- Third Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="100"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="121"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/eighteen"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="176"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="85"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+
+        <!-- Fourth Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="81"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="40"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/seventeen"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="76"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="100"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+
+        <!-- Fifth Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="20"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="20"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/sixteen"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="40"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="     "
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+        <!-- Sixth Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="20"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="0"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/fifteen"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="     "
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:hint="     "
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+        <!-- Seventh Throw -->
+
+        <TableRow
+            android:id="@+id/tableThrow7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeThrow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:text="     "
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textHomeScoreThrow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="     "
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="@string/bull"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <TextView
+                android:id="@+id/textAwayThrow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/padding"
+                android:text="     "
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayThrow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:text="     "
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+
+        <ImageView
+            android:id="@+id/dartboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/scoresegments" />
+
     </TableLayout>
+
 </ScrollView>
