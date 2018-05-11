@@ -33,6 +33,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * This method converts segments to points
+     *
+     * @param shot1 : the segment hit on the first dart shot
+     * @param shot2 : the segment hit on the second dart shot
+     * @param shot3 : the segment hit on the third dart shot
+     */
+
+    public String throwScore(String shot1, String shot2, String shot3) {
+
+        int shotScore1 = 0;
+        int shotScore2 = 0;
+        int shotScore3 = 0;
+
+        Class c1 = new Class();
+
+        // convert String to int; first dart thrown (first shot)
+        try {
+            shotScore1 = Integer.parseInt(shot1);
+        } catch (NumberFormatException e) {
+            //lookup points value in hashMap
+            shotScore1 = c1.get(shot1);
+        }
+
+        // convert String to int; 2nd dart thrown (2nd shot)
+        try {
+            shotScore2 = Integer.parseInt(shot2);
+        } catch (NumberFormatException e) {
+            //lookup points value in hashMap
+        }
+
+        // convert String to int; 3rd dart thrown (3rd shot)
+        try {
+            shotScore3 = Integer.parseInt(shot3);
+        } catch (NumberFormatException e) {
+            //lookup points value in hashMap
+        }
+
+        Log.v("MainActivity", "shotScore1: " + shotScore1);
+        Log.v("MainActivity", "shotScore2: " + shotScore2);
+        Log.v("MainActivity", "shotScore3: " + shotScore3);
+
+        return Integer.toString(shotScore1 + shotScore2 + shotScore3);
+
+    }
+    /**
      * This builds a HashMap with the dartboard segment points.
      * This allows the throwScore method to lookup the number of points to assign to each shot.
      * Segments 1-20, 25 and 50 can be converted to int using Integer.parseInt() and don't need to be included.
@@ -98,49 +143,4 @@ public class MainActivity extends AppCompatActivity {
             dartboardSegments.put("D25", 50);
         }
     }
-
-    /**
-     * This method converts segments to points
-     *
-     * @param shot1 : the segment hit on the first dart shot
-     * @param shot2 : the segment hit on the second dart shot
-     * @param shot3 : the segment hit on the third dart shot
-     */
-
-    public String throwScore(String shot1, String shot2, String shot3) {
-
-        int shotScore1 = 0;
-        int shotScore2 = 0;
-        int shotScore3 = 0;
-
-        // convert String to int; first dart thrown (first shot)
-        try {
-            shotScore1 = Integer.parseInt(shot1);
-        } catch (NumberFormatException e) {
-            //lookup points value in hashMap
-            shotScore1 = dartboardSegments.get(shot1);
-        }
-
-        // convert String to int; 2nd dart thrown (2nd shot)
-        try {
-            shotScore2 = Integer.parseInt(shot2);
-        } catch (NumberFormatException e) {
-            //lookup points value in hashMap
-        }
-
-        // convert String to int; 3rd dart thrown (3rd shot)
-        try {
-            shotScore3 = Integer.parseInt(shot3);
-        } catch (NumberFormatException e) {
-            //lookup points value in hashMap
-        }
-
-        Log.v("MainActivity", "shotScore1: " + shotScore1);
-        Log.v("MainActivity", "shotScore2: " + shotScore2);
-        Log.v("MainActivity", "shotScore3: " + shotScore3);
-
-        return Integer.toString(shotScore1 + shotScore2 + shotScore3);
-
-    }
-
 }
