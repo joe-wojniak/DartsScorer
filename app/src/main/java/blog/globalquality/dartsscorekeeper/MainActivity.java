@@ -7,29 +7,74 @@ import android.widget.EditText;
 
 import java.util.HashMap;
 
-import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart1;
-import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart2;
-import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart3;
-
 public class MainActivity extends AppCompatActivity {
 
     EditText pointsHomeDart1;
     EditText pointsHomeDart2;
     EditText pointsHomeDart3;
+    EditText pointsAwayDart1;
+    EditText pointsAwayDart2;
+    EditText pointsAwayDart3;
+
+    public HashMap<String, Integer> dartboardSegments = new HashMap<String, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pointsHomeDart1 = (EditText) findViewById(editHomeDart1);
-        String pointsHomeDart1Is = (String) pointsHomeDart1.getText().toString();
+        //Home shots 1-3
+        //pointsHomeDart1 = (EditText) findViewById(editHomeDart1);
+        //String pointsHomeDart1Is = (String) pointsHomeDart1.getText().toString();
 
-        pointsHomeDart2 = (EditText) findViewById(editHomeDart2);
-        String pointsHomeDart2Is = (String) pointsHomeDart2.getText().toString();
+        //pointsHomeDart2 = (EditText) findViewById(editHomeDart2);
+        //String pointsHomeDart2Is = (String) pointsHomeDart2.getText().toString();
 
-        pointsHomeDart3 = (EditText) findViewById(editHomeDart3);
-        String pointsHomeDart3Is = (String) pointsHomeDart3.getText().toString();
+        //pointsHomeDart3 = (EditText) findViewById(editHomeDart3);
+        //String pointsHomeDart3Is = (String) pointsHomeDart3.getText().toString();
+
+        //Update Home score
+        //String scoreHome = throwScore(pointsHomeDart1Is,pointsHomeDart2Is,pointsHomeDart3Is);
+        //TextView textHomeThrow1 = (TextView) findViewById(R.id.textHomeThrow1);
+        //textHomeThrow1.setText(scoreHome);
+
+        //setContentView(R.layout.activity_main);
+
+        //TextView tv0 = (TextView) findViewById(editHomeScore);
+        //String score = tv0.getText().toString();
+
+        //TextView tv1 = (TextView)findViewById(R.id.textHomeThrow1);
+        //tv1.setText(scoreHome);
+
+        //TextView tv2 = (TextView)findViewById(R.id.textHomeScore1);
+        //tv2.setText(Integer.parseInt(score)-Integer.parseInt(scoreHome));
+
+        // Away Shots l-3
+//        pointsAwayDart1 = (EditText) findViewById(editAwayDart1);
+//        String pointsAwayDart1Is = (String) pointsAwayDart1.getText().toString();
+
+        //pointsAwayDart2 = (EditText) findViewById(editAwayDart2);
+        //String pointsAwayDart2Is = (String) pointsAwayDart2.getText().toString();
+
+//        pointsAwayDart3 = (EditText) findViewById(editAwayDart3);
+  //      String pointsAwayDart3Is = (String) pointsAwayDart3.getText().toString();
+
+        //Update Away score
+//        String scoreAway = throwScore(pointsAwayDart1Is,pointsAwayDart2Is,pointsAwayDart3Is);
+
+  //      TextView textAwayThrow1 = (TextView) findViewById(R.id.textAwayThrow1);
+    //    textAwayThrow1.setText(scoreHome);
+
+        //setContentView(R.layout.activity_main);
+
+        //tv0 = (TextView) findViewById(editAwayScore);
+        //score = tv0.getText().toString();
+
+        //tv1 = (TextView)findViewById(R.id.textAwayThrow1);
+        //tv1.setText(scoreAway);
+
+        //tv2 = (TextView)findViewById(R.id.textAwayScore1);
+        //tv2.setText(Integer.parseInt(score)-Integer.parseInt(scoreHome));
     }
 
     /**
@@ -53,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             shotScore1 = Integer.parseInt(shot1);
         } catch (NumberFormatException e) {
             //lookup points value in hashMap
-            shotScore1 = c1.get(shot1);
+            shotScore1 = dartboardSegments.get(c1);
         }
 
         // convert String to int; 2nd dart thrown (2nd shot)
@@ -61,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             shotScore2 = Integer.parseInt(shot2);
         } catch (NumberFormatException e) {
             //lookup points value in hashMap
+            shotScore1 = dartboardSegments.get(c1);
         }
 
         // convert String to int; 3rd dart thrown (3rd shot)
@@ -68,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             shotScore3 = Integer.parseInt(shot3);
         } catch (NumberFormatException e) {
             //lookup points value in hashMap
+            shotScore1 = dartboardSegments.get(c1);
         }
 
         Log.v("MainActivity", "shotScore1: " + shotScore1);
@@ -89,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public class Class {
 
-        HashMap<String, Integer> dartboardSegments = new HashMap<String, Integer>();
 
         public Class() {
 
