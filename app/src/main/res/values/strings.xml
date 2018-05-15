@@ -5,13 +5,16 @@
     <string name="home">home</string>
     <string name="cricket">cricket</string>
     <string name="away">away</string>
-    <string name="titleScore">score</string>
+    <string name="titleScore">Score</string>
     <string name="twenty">20</string>
     <string name="nineteen">19</string>
     <string name="eighteen">18</string>
     <string name="seventeen">17</string>
     <string name="sixteen">16</string>
     <string name="fifteen">15</string>
+    <string name="fourteen">14</string>
+    <string name="thirteen">13</string>
+    <string name="twelve">12</string>
     <string name="bull">bull</string>
     <string name="score">501</string>
 </resources>

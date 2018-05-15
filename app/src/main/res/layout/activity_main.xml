@@ -11,78 +11,6 @@
         android:layout_height="wrap_content"
         android:stretchColumns="0,1,2,3,4,5,6">
 
-        <!-- dart points -->
-        <TableRow
-            android:id="@+id/tableDartPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <EditText
-                android:id="@+id/editHomeDart1"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/editHomeDart2"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/editHomeDart3"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-
-            <TextView
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1" />
-
-            <EditText
-                android:id="@+id/editAwayDart1"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/editAwayDart2"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-
-            <EditText
-                android:id="@+id/editAwayDart3"
-                android:layout_gravity="center_horizontal"
-                android:layout_span="1"
-                android:hint="T20"
-                android:inputType="textCapCharacters"
-                android:imeOptions="actionNext"
-                android:textAllCaps="true"
-                android:textSize="@dimen/largeText" />
-        </TableRow>
-
         <!-- column titles -->
 
         <TableRow
@@ -144,10 +72,12 @@
                 android:textSize="@dimen/largeText"
                 android:textStyle="italic"/>
 
-            <TextView
+            <Button
+                android:id="@+id/startButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="1"
-                android:width="76dp" />
+                android:text="Start"
+                android:onClick="startButton"/>
 
             <EditText
                 android:id="@+id/editAwayScore"
@@ -165,6 +95,83 @@
                 android:width="78dp"
                 android:layout_margin="@dimen/tableCellMargin"
                 android:text="@string/titleScore"
+                android:textSize="@dimen/largeText" />
+        </TableRow>
+
+        <!-- dart points -->
+
+        <TableRow
+            android:id="@+id/tableDartPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <EditText
+                android:id="@+id/editHomeDart1"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editHomeDart2"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editHomeDart3"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <Button
+                android:id="@+id/scoreButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:background="@drawable/border_style"
+                android:text="Score"
+                android:onClick="scoreButton"/>
+
+            <EditText
+                android:id="@+id/editAwayDart1"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayDart2"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
+                android:textSize="@dimen/largeText" />
+
+            <EditText
+                android:id="@+id/editAwayDart3"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="1"
+                android:hint="T20"
+                android:inputType="textCapCharacters"
+                android:imeOptions="actionNext"
+                android:textAllCaps="true"
                 android:textSize="@dimen/largeText" />
         </TableRow>
 

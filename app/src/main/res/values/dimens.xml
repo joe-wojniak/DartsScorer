@@ -4,4 +4,5 @@
     <dimen name="paddingLeft">20dp</dimen>
     <dimen name="paddingRight">20dp</dimen>
     <dimen name="largeText">20sp</dimen>
+    <dimen name="tableCellMargin">1dp</dimen>
 </resources>
