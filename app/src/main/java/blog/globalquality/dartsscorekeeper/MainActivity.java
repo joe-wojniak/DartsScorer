@@ -8,16 +8,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-
 import static blog.globalquality.dartsscorekeeper.R.id.editAwayDart1;
 import static blog.globalquality.dartsscorekeeper.R.id.editAwayDart2;
 import static blog.globalquality.dartsscorekeeper.R.id.editAwayDart3;
-import static blog.globalquality.dartsscorekeeper.R.id.editAwayScore;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart1;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart2;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart3;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeScore;
+import static blog.globalquality.dartsscorekeeper.R.id.textAwayScore;
+import static blog.globalquality.dartsscorekeeper.R.id.textAwayScore1;
+import static blog.globalquality.dartsscorekeeper.R.id.textAwayThrow1;
+import static blog.globalquality.dartsscorekeeper.R.id.textHomeScore1;
+import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     EditText pointsAwayDart2;
     EditText pointsAwayDart3;
 
-    public HashMap<String, Integer> dartboardSegments = new HashMap<String, Integer>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,219 +39,127 @@ public class MainActivity extends AppCompatActivity {
          * This method is called when the start button is clicked.
          */
         public void startButton(View view) {
-            // Convert editHomeScore and editAwayScore text values to Integers
-            EditText homeScore = (EditText) findViewById(editHomeScore);
-            boolean homeScoreIs = Boolean.parseBoolean(homeScore.getText().toString());
-
-            EditText awayScore = (EditText) findViewById(editAwayScore);
-            boolean awayScoreIs = Boolean.parseBoolean(homeScore.getText().toString());
-
             //Check if editHomeScore and editAwayScore have been entered for the x01 game.
-             if (homeScoreIs == false) {
+            boolean homeScoreIs = true;
+
+            EditText homeScore = (EditText) findViewById(editHomeScore);
+            homeScoreIs = Boolean.parseBoolean(homeScore.getText().toString());
+
+             if (homeScoreIs == !homeScoreIs) {
                 Toast.makeText(this, "Please enter 1001, 701, 501, or 301 to start the game", Toast.LENGTH_LONG).show();
-                return;
             } else {
+                 TextView awayScore = (TextView) findViewById(textAwayScore);
                  awayScore.setText(homeScore.getText());
              }
+             //Set Players' throw & score TextViews to null;
+
+            int n = 10; // initialize counter
+
+            while (n > 0) {
+
+                String textHomeThrow = "textHomeThrow + n";
+
+                // replace with programmatically generated resource id: texthomeThrow# and textHomeScore#, etc.
+
+                TextView homeThrow1 = (TextView) findViewById(textHomeThrow1);
+                homeThrow1.setText(null);
+
+                TextView homeScore1 = (TextView) findViewById(textHomeScore1);
+                homeScore1.setText(null);
+
+                //Set Away Player's throw & score TextViews to null;
+
+                TextView awayThrow1 = (TextView) findViewById(textAwayThrow1);
+                awayThrow1.setText(null);
+
+                TextView awayScore1 = (TextView) findViewById(textAwayScore1);
+                awayScore1.setText(null);
+
+                n = n - 1; // decrement counter
+            }
         }
 
     /**
      * This method is called when the score button is clicked.
      */
     public void scoreButton(View view) {
-        //Home shots 1-3; convert EditText values to integers
-        //If D## then multipy by 2
-        //If T## then multiply by 3
-        //If ### then keep as is (do not multiply)
 
-        int pointsHomeDart1Seg;
-        int pointsHomeDart2Seg;
-        int pointsHomeDart3Seg;
-
+        //Score Home Player's throw (shots 1-3);
         pointsHomeDart1 = (EditText) findViewById(editHomeDart1);
         String pointsHomeDart1Is = pointsHomeDart1.getText().toString();
-        char result = pointsHomeDart1Is.charAt(0);
-        if (result == 'D') {
-            pointsHomeDart1Is = pointsHomeDart1Is.substring(1);
-            pointsHomeDart1Seg = Integer.parseInt(pointsHomeDart1Is);
-            pointsHomeDart1Seg = 2*pointsHomeDart1Seg;
-        } else if (result == 'T') {
-            pointsHomeDart1Is = pointsHomeDart1Is.substring(1);
-            pointsHomeDart1Seg = Integer.parseInt(pointsHomeDart1Is);
-            pointsHomeDart1Seg = 3*pointsHomeDart1Seg;
-        } else {
-            pointsHomeDart1Seg = Integer.parseInt(pointsHomeDart1Is);
-        }
+        int shotPoints1 = shot(pointsHomeDart1Is);
 
         pointsHomeDart2 = (EditText) findViewById(editHomeDart2);
         String pointsHomeDart2Is = pointsHomeDart2.getText().toString();
-        result = pointsHomeDart2Is.charAt(0);
-        if (result == 'D') {
-            pointsHomeDart2Is = pointsHomeDart2Is.substring(1);
-            pointsHomeDart2Seg = Integer.parseInt(pointsHomeDart2Is);
-            pointsHomeDart2Seg = 2*pointsHomeDart2Seg;
-        } else if (result == 'T') {
-            pointsHomeDart2Is = pointsHomeDart2Is.substring(1);
-            pointsHomeDart2Seg = Integer.parseInt(pointsHomeDart2Is);
-            pointsHomeDart2Seg = 3*pointsHomeDart2Seg;
-        } else {
-            pointsHomeDart2Seg = Integer.parseInt(pointsHomeDart2Is);
-        }
+        int shotPoints2 = shot(pointsHomeDart2Is);
 
         pointsHomeDart3 = (EditText) findViewById(editHomeDart3);
         String pointsHomeDart3Is = pointsHomeDart3.getText().toString();
-        result = pointsHomeDart3Is.charAt(0);
-        if (result == 'D') {
-            pointsHomeDart3Is = pointsHomeDart3Is.substring(1);
-            pointsHomeDart3Seg = Integer.parseInt(pointsHomeDart3Is);
-            pointsHomeDart3Seg = 2*pointsHomeDart3Seg;
-        } else if (result == 'T') {
-            pointsHomeDart3Is = pointsHomeDart3Is.substring(1);
-            pointsHomeDart3Seg = Integer.parseInt(pointsHomeDart3Is);
-            pointsHomeDart3Seg = 3*pointsHomeDart3Seg;
-        } else {
-            pointsHomeDart3Seg = Integer.parseInt(pointsHomeDart3Is);
-        }
+        int shotPoints3 = shot(pointsHomeDart3Is);
 
         //Update Home score
-        int scoreHome = throwScore(pointsHomeDart1Seg,pointsHomeDart2Seg,pointsHomeDart3Seg);
+        int scoreHome = shotPoints1 + shotPoints2 + shotPoints3;
         TextView textHomeThrow1 = (TextView) findViewById(R.id.textHomeThrow1);
         textHomeThrow1.setText(scoreHome);
 
-        //setContentView(R.layout.activity_main);
-
-        //TextView tv0 = (TextView) findViewById(editHomeScore);
-        //String score = tv0.getText().toString();
-
-        //TextView tv1 = (TextView)findViewById(R.id.textHomeThrow1);
-        //tv1.setText(scoreHome);
-
-        //TextView tv2 = (TextView)findViewById(R.id.textHomeScore1);
-        //tv2.setText(Integer.parseInt(score)-Integer.parseInt(scoreHome));
-
-        // Away Shots l-3; convert EditText values to integers
+        //Score Away Player's throw (shots 1-3);
         pointsAwayDart1 = (EditText) findViewById(editAwayDart1);
-        int pointsAwayDart1Is = Integer.parseInt(pointsAwayDart1.getText().toString());
+        String pointsAwayDart1Is = pointsAwayDart1.getText().toString();
+        shotPoints1 = shot(pointsHomeDart1Is);
 
         pointsAwayDart2 = (EditText) findViewById(editAwayDart2);
-        int pointsAwayDart2Is = Integer.parseInt(pointsAwayDart2.getText().toString());
+        String pointsAwayDart2Is = pointsAwayDart2.getText().toString();
+        shotPoints2 = shot(pointsAwayDart2Is);
 
         pointsAwayDart3 = (EditText) findViewById(editAwayDart3);
-        int pointsAwayDart3Is = Integer.parseInt(pointsAwayDart3.getText().toString());
+        String pointsAwayDart3Is = pointsAwayDart3.getText().toString();
+        shotPoints3 = shot(pointsAwayDart3Is);
 
         //Update Away score
-        int scoreAway = throwScore(pointsAwayDart1Is,pointsAwayDart2Is,pointsAwayDart3Is);
-
-        //      TextView textAwayThrow1 = (TextView) findViewById(R.id.textAwayThrow1);
-        //    textAwayThrow1.setText(scoreHome);
-
-        //setContentView(R.layout.activity_main);
-
-        //tv0 = (TextView) findViewById(editAwayScore);
-        //score = tv0.getText().toString();
-
-        //tv1 = (TextView)findViewById(R.id.textAwayThrow1);
-        //tv1.setText(scoreAway);
-
-        //tv2 = (TextView)findViewById(R.id.textAwayScore1);
-        //tv2.setText(Integer.parseInt(score)-Integer.parseInt(scoreHome));
+        int scoreAway = shotPoints1 + shotPoints2 + shotPoints3;
+        TextView textAwayThrow1 = (TextView) findViewById(R.id.textAwayThrow1);
+        textAwayThrow1.setText(scoreAway);
     }
 
     /**
-     * This method converts segments to points
+     * This method converts dart throw to points
      *
-     * @param shot1 : the segment hit on the first dart shot
-     * @param shot2 : the segment hit on the second dart shot
-     * @param shot3 : the segment hit on the third dart shot
+     * @param shot: the segment hit on the dart shot
      */
 
-    public int throwScore(int shot1, int shot2, int shot3) {
-        //int shotScore1;
-        //int shotScore2;
-        //int shotScore3;
+    public int shot(String shot) {
+        int shotPoints = 0;
+        String shotIs = null;
 
-        Class c1 = new Class();
-
-        //lookup points value in hashMap
-        //shotScore1 = dartboardSegments.get(c1);
-        //shotScore2 = dartboardSegments.get(c1);
-        //shotScore3 = dartboardSegments.get(c1);
-
-        Log.v("MainActivity", "shotScore1: " + shot1);
-        Log.v("MainActivity", "shotScore2: " + shot2);
-        Log.v("MainActivity", "shotScore3: " + shot3);
-
-        return (shot1 + shot2 + shot3);
-    }
-
-    /**
-     * This builds a HashMap with the dartboard segment points.
-     * This allows the throwScore method to lookup the number of points to assign to each shot.
-     * Segments 1-20, 25 and 50 can be converted to int using Integer.parseInt() and don't need to be included.
-     * The following segments are included:
-     *          Doubles: D1-D20, point value 2 - 40;
-     *          Trebles: T1-T20, point value 3 - 60;
-     *          Outer Bullseye: B or OB = 25;
-     *          Inner Bullseye (aka double Bullseye): IB, DB or D25 = 50;
-     */
-    public class Class {
-
-        public Class() {
-
-            //Doubles
-            dartboardSegments.put("D1", 2);
-            dartboardSegments.put("D2", 4);
-            dartboardSegments.put("D3", 6);
-            dartboardSegments.put("D4", 8);
-            dartboardSegments.put("D5", 10);
-            dartboardSegments.put("D6", 12);
-            dartboardSegments.put("D7", 14);
-            dartboardSegments.put("D8", 16);
-            dartboardSegments.put("D9", 18);
-            dartboardSegments.put("D10", 20);
-            dartboardSegments.put("D11", 22);
-            dartboardSegments.put("D12", 24);
-            dartboardSegments.put("D13", 26);
-            dartboardSegments.put("D14", 28);
-            dartboardSegments.put("D15", 30);
-            dartboardSegments.put("D16", 32);
-            dartboardSegments.put("D17", 34);
-            dartboardSegments.put("D18", 36);
-            dartboardSegments.put("D19", 38);
-            dartboardSegments.put("D20", 40);
-            //Trebles
-            dartboardSegments.put("T1", 3);
-            dartboardSegments.put("T2", 6);
-            dartboardSegments.put("T3", 9);
-            dartboardSegments.put("T4", 12);
-            dartboardSegments.put("T5", 15);
-            dartboardSegments.put("T6", 18);
-            dartboardSegments.put("T7", 21);
-            dartboardSegments.put("T8", 24);
-            dartboardSegments.put("T9", 27);
-            dartboardSegments.put("T10", 30);
-            dartboardSegments.put("T11", 33);
-            dartboardSegments.put("T12", 36);
-            dartboardSegments.put("T13", 39);
-            dartboardSegments.put("T14", 42);
-            dartboardSegments.put("T15", 45);
-            dartboardSegments.put("T16", 48);
-            dartboardSegments.put("T17", 51);
-            dartboardSegments.put("T18", 54);
-            dartboardSegments.put("T19", 57);
-            dartboardSegments.put("T20", 60);
-            //Bullseye - allowing for possible abbreviations
-            dartboardSegments.put("B", 25);
-            dartboardSegments.put("OB", 25);
-            dartboardSegments.put("IB", 50);
-            dartboardSegments.put("DB", 50);
-            dartboardSegments.put("D25", 50);
+        char result = shot.charAt(0);
+        if (result == 'D') {
+            shotIs = shotIs.substring(1);
+            shotPoints = Integer.parseInt(shotIs);
+            shotPoints = 2*shotPoints;
+        } else if (result == 'T') {
+            shotIs = shotIs.substring(1);
+            shotPoints = Integer.parseInt(shotIs);
+            shotPoints = 3*shotPoints;
+        } else if (result == 'O') {
+            shotPoints = 25;
+        } else if (result == 'B') {
+            shotPoints = 50;
+        } else if (result == 'I') {
+            shotPoints = 50;
+        } else {
+            shotPoints = Integer.parseInt(shotIs);
         }
+
+        Log.v("MainActivity", "Shot Points: " + shotPoints);
+
+        return (shotPoints);
     }
 }
 
 // TODO Define functionality of the start button: check that the x01 game has been entered (1001, 701, 501, 301)
+// TODO Empty points from the table cells when start button is pushed
 // TODO Copy x01 game from Home Player Score to Away Player Score
 // TODO Define functionality for the score button: score the Home throw and the Away throw
 // TODO Calculate each player's average points per throw (i.e. per 3 darts thrown)
 // TODO Define point lookup in the hashMap
+// TODO editAwayScore can be changed to a TextView. Copy entry over from editHomeScore
