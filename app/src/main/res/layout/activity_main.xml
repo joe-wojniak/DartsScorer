@@ -55,7 +55,6 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/textHomeScore"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="2"
                 android:width="78dp"
@@ -79,8 +78,8 @@
                 android:text="Start"
                 android:onClick="startButton"/>
 
-            <EditText
-                android:id="@+id/editAwayScore"
+            <TextView
+                android:id="@+id/textAwayScore"
                 android:layout_gravity="center"
                 android:layout_span="1"
                 android:width="60dp"
@@ -89,7 +88,6 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/textAwayScore"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="2"
                 android:width="78dp"
