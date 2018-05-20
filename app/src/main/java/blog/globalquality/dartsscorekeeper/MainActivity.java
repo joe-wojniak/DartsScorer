@@ -1,7 +1,7 @@
 package blog.globalquality.dartsscorekeeper;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,8 +14,6 @@ import static blog.globalquality.dartsscorekeeper.R.id.editAwayDart3;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart1;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart2;
 import static blog.globalquality.dartsscorekeeper.R.id.editHomeDart3;
-import static blog.globalquality.dartsscorekeeper.R.id.editHomeScore;
-import static blog.globalquality.dartsscorekeeper.R.id.textAwayScore;
 import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow1;
 import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow10;
 import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow2;
@@ -27,7 +25,7 @@ import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow7;
 import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow8;
 import static blog.globalquality.dartsscorekeeper.R.id.textHomeThrow9;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     EditText pointsHomeDart1;
     EditText pointsHomeDart2;
@@ -36,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     EditText pointsAwayDart2;
     EditText pointsAwayDart3;
 
+    int startScore = 501; // Starting score of the x01 game
     int n = 10; // initialize throw counter
+    int previousHomeThrowScore;
+    int previousAwayThrowScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,27 +49,6 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the start button is clicked.
      */
     public void startButton(View view) {
-        //Check if editHomeScore and editAwayScore have been entered for the x01 game.
-        boolean edHomeScoreIs = true;
-
-        EditText edHomeScore = (EditText) findViewById(editHomeScore);
-        edHomeScoreIs = Boolean.parseBoolean(edHomeScore.getText().toString());
-
-        if (edHomeScoreIs == !edHomeScoreIs) {
-            Toast.makeText(this, "Please enter 1001, 701, 501, or 301 to start the game", Toast.LENGTH_LONG).show();
-        } else {
-            TextView awayScore = (TextView) findViewById(textAwayScore);
-            awayScore.setText(edHomeScore.getText());
-        }
-        //Set Players' throw & score TextViews to null;
-
-        //int n = 10; // initialize counter
-
-        //while (n > 0) {
-
-        //  String textHomeThrow = "textHomeThrow+n";
-
-        // replace with programmatically generated resource id: texthomeThrow# and textHomeScore#, etc.
 
         //Set Home Player's throw & score TextViews to null;
         TextView homeThrow = (TextView) findViewById(textHomeThrow1);
@@ -192,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
 
         awayScore = (TextView) findViewById(R.id.textAwayScore10);
         awayScore.setText(null);
-        //n = n - 1; // decrement counter
     }
 
     /**
@@ -219,73 +198,177 @@ public class MainActivity extends AppCompatActivity {
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow1);
             textThrow.setText(score);
 
-            EditText editScore = (EditText) findViewById(R.id.editHomeScore);
-            int homeScore = Integer.parseInt(editScore.toString()); // crashes here
-            // homeScore = homeScore - shotPoints1 - shotPoints2 - shotPoints3;
-            String strHomescore = Integer.toString(homeScore);
-            TextView textScore = (TextView) findViewById(R.id.textHomeScore1);
-            textScore.setText(strHomescore);
+            String scoreThrow = Integer.toString(startScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore1);
+            homeScore.setText(scoreThrow);
+
+            previousHomeThrowScore = startScore - shotPoints1 - shotPoints2 - shotPoints3;
         }
 
         if (n == 9) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow2);
             textThrow.setText(score);
+
+            TextView previousScore = (TextView) findViewById(R.id.textHomeScore1);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore2);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+
         }
 
         if (n == 8) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow3);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore3);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (n == 7) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow4);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore4);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (n == 6) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow5);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore5);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 5) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow6);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore6);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 4) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow7);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore7);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 3) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow8);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore8);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 2) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow9);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore9);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 1) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textHomeThrow10);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView homeScore = (TextView) findViewById(R.id.textHomeScore10);
+            homeScore.setText(scoreThrow);
+
+            if (previousHomeThrowScore>shotPoints1+shotPoints2+shotPoints3) {
+                previousHomeThrowScore = previousHomeThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousHomeThrowScore<shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousHomeThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 0) {
-            Toast.makeText(this, "Game Over", Toast.LENGTH_LONG).show();
-        }
-
-        if (n == -1) {
             Toast.makeText(this, "Game Over", Toast.LENGTH_LONG).show();
         }
 
@@ -307,61 +390,162 @@ public class MainActivity extends AppCompatActivity {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow1);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(startScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore1);
+            awayScore.setText(scoreThrow);
+
+            previousAwayThrowScore = startScore - shotPoints1 - shotPoints2 - shotPoints3;
         }
 
         if (n == 9) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow2);
             textThrow.setText(score);
+
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore2);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (n == 8) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow3);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore3);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (n == 7) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow4);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore4);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
         }
 
         if (n == 6) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow5);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore5);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 5) {
             String scoreHome = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textHomeThrow = (TextView) findViewById(textHomeThrow6);
             textHomeThrow.setText(scoreHome);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore6);
+            awayScore.setText(scoreThrow);
+
+            previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 4) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow7);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore7);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 3) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow8);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore8);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 2) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow9);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore9);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
 
         if (n == 1) {
             String score = Integer.toString(shotPoints1 + shotPoints2 + shotPoints3);
             TextView textThrow = (TextView) findViewById(R.id.textAwayThrow10);
             textThrow.setText(score);
+            String scoreThrow = Integer.toString(previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3);
+
+            TextView awayScore = (TextView) findViewById(R.id.textAwayScore10);
+            awayScore.setText(scoreThrow);
+
+            if (previousAwayThrowScore > shotPoints1+shotPoints2+shotPoints3) {
+                previousAwayThrowScore = previousAwayThrowScore - shotPoints1 - shotPoints2 - shotPoints3;
+            } else if (previousAwayThrowScore < shotPoints1+shotPoints2+shotPoints3){
+                Toast.makeText(this, "Must shoot " + previousAwayThrowScore + " to go out.", Toast.LENGTH_LONG).show();
+            }
+            goOut(previousHomeThrowScore);
         }
+
         n = n - 1; // decrement throw counter
     }
 
@@ -398,12 +582,37 @@ public class MainActivity extends AppCompatActivity {
 
         return (shotPoints);
     }
+    /**
+     * This method checks to see if the player can go out
+     *
+     * @param currentScore - the player's current score
+     */
+
+    public void goOut(int currentScore) {
+        if (currentScore==170) {
+            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "T20, T20, Bull", Toast.LENGTH_LONG).show();
+        }
+        if (currentScore==130) {
+            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "T20, 20, Bull", Toast.LENGTH_LONG).show();
+        }
+        if (currentScore==100) {
+            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "T20, D20", Toast.LENGTH_LONG).show();
+        }
+        if (currentScore==60) {
+            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "20, D20", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
 
 // DONE Define functionality of the start button: check that the x01 game has been entered (1001, 701, 501, 301)
 // DONE Empty points from the table cells when start button is pushed
-// DONE Copy x01 game from Home Player Score to Away Player Score
-// TODO Define functionality for the score button: score the Home throw and the Away throw
+// DONE Define functionality for the score button: score the Home throw and the Away throw
 // TODO Calculate each player's average points per throw (i.e. per 3 darts thrown)
+// TODO Add link to Darts501.com
 // DONE Define point lookup in the hashMap
 // DONE editAwayScore can be changed to a TextView.
