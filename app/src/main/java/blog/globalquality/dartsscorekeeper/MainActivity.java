@@ -36,10 +36,10 @@ public class MainActivity extends Activity {
 
     int startScore = 501; // Starting score of the x01 game
     int n = 10; // initialize throw counter
-    int previousHomeThrowScore = 0; // the score from the last throw
-    int previousAwayThrowScore = 0; // the score from the last throw
-    int homePointsScored = 0; // keeps track of Home Player's points scored
-    int awayPointsScored = 0; // keeps track of Away Player's points scored
+    int previousHomeThrowScore; // the score from the last throw
+    int previousAwayThrowScore; // the score from the last throw
+    int homePointsScored; // keeps track of Home Player's points scored
+    int awayPointsScored; // keeps track of Away Player's points scored
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,6 @@ public class MainActivity extends Activity {
         } else {
             goOut(homePointsScored, shotPoints1 + shotPoints2 + shotPoints3);
         }
-
 
         //Update Home score & dart average
         if (n == 10) {
@@ -499,7 +498,7 @@ public class MainActivity extends Activity {
             Toast.makeText(this, "Game Over", Toast.LENGTH_LONG).show();
             return;
         }
-            n = n - 1; // decrement throw counter
+        n = n - 1; // decrement throw counter
     }
 
     /**
@@ -543,32 +542,123 @@ public class MainActivity extends Activity {
      */
 
     public void goOut(int currentScore, int currentThrow) {
-        if (currentScore == 170) {
-            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "T20, T20, Bull", Toast.LENGTH_LONG).show();
-        }
-        if (currentScore == 130) {
-            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "T20, 20, Bull", Toast.LENGTH_LONG).show();
-        }
-        if (currentScore == 100) {
-            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "T20, D20", Toast.LENGTH_LONG).show();
-        }
-        if (currentScore == 60) {
-            Toast.makeText(this, "to Go Out next Throw:", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "20, D20", Toast.LENGTH_LONG).show();
-        }
-        if (currentScore + currentThrow > startScore) {
-            Toast.makeText(this, "Must shoot " + (startScore - currentScore) + " to go out.", Toast.LENGTH_LONG).show();
-        }
-
+        int toGoOut;
+        toGoOut = startScore - currentScore;
+        Toast.makeText(this, "Your throw is " + currentThrow, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Must shoot " + toGoOut + " to go out.", Toast.LENGTH_LONG).show();
     }
 
     /**
-     * This method is called when the start button is clicked.
+     * This method is called when the reset button is clicked.
      */
-    public void startButton(View view) {
+    public void resetButton(View view) {
+        clearScores();
+        startScore = 501; // reset starting score of the x01 game
+        n = 10; // reset throw counter
+        previousHomeThrowScore = 0; // reset the score from the last throw
+        previousAwayThrowScore = 0; // reset the score from the last throw
+        homePointsScored = 0; // keeps track of Home Player's points scored
+        awayPointsScored = 0; // keeps track of Away Player's points scored
+    }
+
+    /**
+     * This method is called when the checkOutHomeButton is clicked.
+     */
+    public void checkoutHomeButton(View view) {
+        int pointsLeftInGame; // startScore - Player's Points Scored so far
+        int shot1; // checkout shot #1
+        int shot2; // checkout shot #2
+        int shot3; // checkout shot #3
+
+        // Home Player's checkout combinations
+        pointsLeftInGame = startScore - homePointsScored;
+        if (pointsLeftInGame > 170) {
+            Toast.makeText(this, "Score must be no more than 170 to checkout in 3 shots", Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame == 170) {
+            Toast.makeText(this, "Home to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "T20, T20, Bull", Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 119) {
+            shot1 = 60;
+            shot2 = 60;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Home to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 99) {
+            shot1 = 60;
+            shot2 = 40;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Home to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 79) {
+            shot1 = 50;
+            shot2 = 30;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Home to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else {
+            shot1 = 40;
+            shot2 = 20;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Home to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * This method is called when the checkOutHomeButton is clicked.
+     */
+    public void checkoutAwayButton(View view) {
+        int pointsLeftInGame; // startScore - Player's Points Scored so far
+        int shot1; // checkout shot #1
+        int shot2; // checkout shot #2
+        int shot3; // checkout shot #3
+
+        // Away Player's checkout combinations
+        pointsLeftInGame = startScore - awayPointsScored;
+        if (pointsLeftInGame > 170) {
+            Toast.makeText(this, "Score must be no more than 170 to checkout in 3 shots", Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame == 170) {
+            Toast.makeText(this, "Away to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "T20, T20, Bull", Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 119) {
+            shot1 = 60;
+            shot2 = 60;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Away to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 99) {
+            shot1 = 60;
+            shot2 = 40;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Away to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else if (pointsLeftInGame > 79) {
+            shot1 = 50;
+            shot2 = 30;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Away to Go Out::", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        } else {
+            shot1 = 40;
+            shot2 = 20;
+            shot3 = pointsLeftInGame - (shot1 + shot2);
+
+            Toast.makeText(this, "Away to Go Out:", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, shot1 + " " + shot2 + " " + shot3, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * This method is called by the start and the reset button to set the scores to null.
+     */
+    public void clearScores() {
 
         //Set Home Player's throw & score TextViews to null;
         TextView homeThrow = (TextView) findViewById(textHomeThrow1);
@@ -708,4 +798,4 @@ public class MainActivity extends Activity {
 // DONE Add link to Darts501.com
 // DONE Define point lookup in the hashMap
 // DONE editAwayScore can be changed to a TextView
-// TODO Implement the game rules- last throw must result in score = 0 to go out (to end the game)
+// DONE Implement the game rules- last throw must result in score = 0 to go out (to end the game)
